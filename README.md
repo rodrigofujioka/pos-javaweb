@@ -1,6 +1,22 @@
 # pos-javaweb
 Projeto de java web básico para disciplinas de pós graduação. Contém conteúdo básico com fundamentos de programação Java web utilizando REST com Maven, JDK11, SpringBoot , SpringData
 
+[![License](https://img.shields.io/github/license/rodrigofujioka/pos-javaweb.svg)](https://opensource.org/licenses/MIT)
+<img src="https://img.shields.io/github/followers/rodrigofujioka?label=Follow&style=plastic">
+<img src="https://img.shields.io/github/forks/rodrigofujioka/pos-javaweb?color=SSSS&label=Fork&style=plastic">
+<a href="https://github.com/rodrigofujioka/pos-javaweb/graphs/contributors" alt="Contributors">
+   <img src="https://img.shields.io/github/contributors/rodrigofujioka/pos-javaweb" /></a>
+<a href="https://github.com/rodrigofujioka/pos-javaweb/pulse" alt="Activity">
+    <img src="https://img.shields.io/github/commit-activity/m/rodrigofujioka/pos-javaweb" /></a>  
+  
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=bugs)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=code_smells)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=alert_status)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=ncloc)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=vulnerabilities)
+
 Olá, seja bem vindo a mais um curso com o professor Rodrigo Fujioka. 
 
 * Meu linkedin: [@rodrigofujioka](https://www.linkedin.com/in/rodrigofujioka/)
@@ -30,7 +46,7 @@ Cursos recomendados para alunos com dificuldade em assimilar o conteúdo.
 - [Loiane - Java](https://loiane.training/curso/java-basico)
 
 
-## Instalações  JAVA | JAVA WEB
+## Preparação do ambiente
 
 
 1 - Configurar o ambiente Java, na ordem informada. 
@@ -44,21 +60,16 @@ Cursos recomendados para alunos com dificuldade em assimilar o conteúdo.
          
 1.3 - Configurar Classpath (Java e Maven) -> 
 
-1.4 - Baixar e instalar ferramentas de desenvolvimento. 
+1.4 - Baixar e instalar ferramentas de desenvolvimento.
 
 1.4.1 - Aulas ministradas com [Intellij Idea](https://www.jetbrains.com/idea/) Idea ou [Spring Tools](https://spring.io/tools)  .
 
 1.4.2 - Pode ser utilizada qualquer outra ferramenta, no entanto, dúvidas sobre 
-utilização apenas sobre as IDE's do itens 1.4.1.
+utilização apenas sobre as IDE's do itens #1.4.1
 
 1.5 - Criar conta no github 
 
-1.5.1 - Realizar fork do meu github [Java básico](https://github.com/rodrigofujioka/javabasico) ou [Java Web](https://github.com/rodrigofujioka/programacaoweb)  , recomendo me seguir lá. 
+1.5.1 - Realizar fork do meu github [Java básico](https://github.com/rodrigofujioka/pos-javaweb) , recomendo me seguir lá. 
 
-1.5.2 - Criar repositório para o seu projeto da disciplina de Java básico:  ProjetoJavaFujioka-SEMESTRELETIVO ex: ProjetoJavaFujioka-20192
-
-1.5.3 - Criar repositório para o seu projeto da disciplina de Programação Web:  ProjetoWebFujioka-SEMESTRELETIVO ex: ProjetoWebFujioka-20192
-
-2 - O conteúdo da disciplina pode não seguir a numeração dos slides. 
-
-2.1 - Os Slides são todos os domingos atualizados no virtual 
+1.5.2 - Instruções para o projeto são informadas em sala de aula, deve existir outro arquivo .MD com as 
+instruções descritivas para sua turma. 
