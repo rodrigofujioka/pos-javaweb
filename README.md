@@ -1,5 +1,6 @@
-# pos-javaweb
-Projeto de java web básico para disciplinas de pós graduação. Contém conteúdo básico com fundamentos de programação Java web utilizando REST com Maven, JDK11, SpringBoot , SpringData
+# Pós graduação em desenvolvimento web
+Código base da disciplina de fundamentos de programação web para disciplinas de pós graduação. 
+Contém conteúdo básico com fundamentos de programação Java web utilizando REST com Maven, JDK11, SpringBoot , SpringData
 
 [![License](https://img.shields.io/github/license/rodrigofujioka/pos-javaweb.svg)](https://opensource.org/licenses/MIT)
 <img src="https://img.shields.io/github/followers/rodrigofujioka?label=Follow&style=plastic">
@@ -15,7 +16,7 @@ Projeto de java web básico para disciplinas de pós graduação. Contém conte�
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=alert_status)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=ncloc)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=vulnerabilities)
+![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=vulnerabilities)
 
 Olá, seja bem vindo a mais um curso com o professor Rodrigo Fujioka. 
 
