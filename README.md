@@ -10,7 +10,6 @@ Contém conteúdo básico com fundamentos de programação Java web utilizando R
 <a href="https://github.com/rodrigofujioka/pos-javaweb/pulse" alt="Activity">
     <img src="https://img.shields.io/github/commit-activity/m/rodrigofujioka/pos-javaweb" /></a>  
   
-
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=bugs)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=code_smells)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rodrigofujioka_pos-javaweb&metric=alert_status)](https://sonarcloud.io/dashboard?id=rodrigofujioka_pos-javaweb) 
