@@ -1,15 +1,16 @@
 package dev.fujioka.java.avancado.web.exception;
 
-public class BusinessException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class EntityNotFoundException extends RuntimeException {
 
-    public static final String ERROR_001 = "business.error.code.001";
-    public static final String ERROR_002 = "business.error.code.002";
     private final String field;
     private final Object value;
     private final String message;
 
-    public BusinessException(String field, Object value, String message) {
+    public EntityNotFoundException(String field, Object value, String message) {
         this.field = field;
         this.value = value;
         this.message = message;
