@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  #############################################################
+  ######################### DATABASES #########################
+  #############################################################
+
+  db-pos-web:
+    container_name: db-pos-web
+    image: postgres:12
+    restart: always
+    hostname: db-pos
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: pos
+      POSTGRES_USER: pos
+      POSTGRES_PASSWORD: pos
+      PGDATA: /tmp
+    volumes:
+      - ./docker/postgres/data-pos-web:/var/lib/postgresql/data
