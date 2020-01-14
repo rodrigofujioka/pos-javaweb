@@ -4,7 +4,6 @@ server:
 spring:
   profiles:
     active: development
-    
 # Database
   datasource:
     driver-class-name: org.postgresql.Driver

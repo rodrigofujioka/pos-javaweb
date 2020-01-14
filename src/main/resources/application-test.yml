@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: test
+  flyway:
+    enabled: false
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: ''
+    url: jdbc:h2:file:~/papw2019
+    username: sa
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        bytecode:
+          use_reflection_optimizer: false
+        format_sql: true
+        id:
+          new_generator_mappings: false
+        search:
+          autoregister_listeners: false
+        show_sql: true
+        use_sql: true
+logging:
+  pattern:
+    console: '%d %-5level %logger : %msg%n'
+  level:
+    org.springframework: ERROR
+    org.hibernate: ERROR
+server:
+  port: 8080
