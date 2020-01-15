@@ -34,7 +34,7 @@ public class WarehouseServiceImpl implements BaseService<Warehouse> {
     public Warehouse findBy(Long id) {
         Optional<Warehouse> optWarehouse = repository.findById(id);
         if(!optWarehouse.isPresent()) {
-            throw new RuntimeException("Deposito inexistente");
+            throw new RuntimeException("Armazém inexistente");
         }
         return optWarehouse.get();
     }
