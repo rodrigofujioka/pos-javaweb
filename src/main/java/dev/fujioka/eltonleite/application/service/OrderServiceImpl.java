@@ -34,7 +34,7 @@ public class OrderServiceImpl implements BaseService<Order> {
     public Order findBy(Long id) {
         Optional<Order> optOrder = repository.findById(id);
         if(!optOrder.isPresent()) {
-            throw new RuntimeException("Funcionario inexistente");
+            throw new RuntimeException("Compra inexistente");
         }
         return optOrder.get();
     }
