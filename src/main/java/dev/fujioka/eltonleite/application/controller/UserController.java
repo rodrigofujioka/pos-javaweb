@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.fujioka.eltonleite.domain.model.user.User;
 import dev.fujioka.eltonleite.domain.service.BaseService;
 import dev.fujioka.eltonleite.infrastructure.service.ResponseService;
-import dev.fujioka.eltonleite.presentation.assembler.user.UserAssembler;
+import dev.fujioka.eltonleite.presentation.assembler.UserAssembler;
 import dev.fujioka.eltonleite.presentation.dto.shared.ResponseTO;
 import dev.fujioka.eltonleite.presentation.dto.user.UserRequestTO;
 import dev.fujioka.eltonleite.presentation.dto.user.UserResponseTO;

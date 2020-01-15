@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements BaseService<Employee> {
     public Employee findBy(Long id) {
         Optional<Employee> optEmployee = repository.findById(id);
         if(!optEmployee.isPresent()) {
-            throw new RuntimeException("Funcionario inexistente");
+            throw new RuntimeException("Funcionário inexistente");
         }
         return optEmployee.get();
     }

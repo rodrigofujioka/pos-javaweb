@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.fujioka.eltonleite.domain.model.employee.Employee;
 import dev.fujioka.eltonleite.domain.service.BaseService;
 import dev.fujioka.eltonleite.infrastructure.service.ResponseService;
-import dev.fujioka.eltonleite.presentation.assembler.employee.EmployeeAssembler;
+import dev.fujioka.eltonleite.presentation.assembler.EmployeeAssembler;
 import dev.fujioka.eltonleite.presentation.dto.employee.EmployeeRequestTO;
 import dev.fujioka.eltonleite.presentation.dto.employee.EmployeeResponseTO;
 import dev.fujioka.eltonleite.presentation.dto.shared.ResponseTO;

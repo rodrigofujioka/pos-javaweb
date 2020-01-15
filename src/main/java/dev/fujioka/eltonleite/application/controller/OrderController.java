@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.fujioka.eltonleite.domain.model.order.Order;
 import dev.fujioka.eltonleite.domain.service.BaseService;
 import dev.fujioka.eltonleite.infrastructure.service.ResponseService;
-import dev.fujioka.eltonleite.presentation.assembler.order.OrderAssembler;
+import dev.fujioka.eltonleite.presentation.assembler.OrderAssembler;
 import dev.fujioka.eltonleite.presentation.dto.order.OrderRequestTO;
 import dev.fujioka.eltonleite.presentation.dto.order.OrderResponseTO;
 import dev.fujioka.eltonleite.presentation.dto.shared.ResponseTO;

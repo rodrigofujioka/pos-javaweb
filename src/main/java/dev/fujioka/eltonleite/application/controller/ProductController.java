@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.fujioka.eltonleite.domain.model.product.Product;
 import dev.fujioka.eltonleite.domain.service.ProductService;
 import dev.fujioka.eltonleite.infrastructure.service.ResponseService;
-import dev.fujioka.eltonleite.presentation.assembler.product.ProductAssembler;
+import dev.fujioka.eltonleite.presentation.assembler.ProductAssembler;
 import dev.fujioka.eltonleite.presentation.dto.product.ProductRequestTO;
 import dev.fujioka.eltonleite.presentation.dto.product.ProductResponseTO;
 import dev.fujioka.eltonleite.presentation.dto.shared.ResponseTO;

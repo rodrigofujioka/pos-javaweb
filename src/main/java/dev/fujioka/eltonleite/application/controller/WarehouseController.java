@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.fujioka.eltonleite.domain.model.warehouse.Warehouse;
 import dev.fujioka.eltonleite.domain.service.BaseService;
 import dev.fujioka.eltonleite.infrastructure.service.ResponseService;
-import dev.fujioka.eltonleite.presentation.assembler.warehouse.WarehouseAssembler;
+import dev.fujioka.eltonleite.presentation.assembler.WarehouseAssembler;
 import dev.fujioka.eltonleite.presentation.dto.shared.ResponseTO;
 import dev.fujioka.eltonleite.presentation.dto.warehouse.WarehouseRequestTO;
 import dev.fujioka.eltonleite.presentation.dto.warehouse.WarehouseResponseTO;
