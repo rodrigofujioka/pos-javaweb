@@ -21,6 +21,9 @@
         <java.version>13</java.version>
         <junit.version>5.5.1</junit.version>
         <io.springfox.version>2.9.2</io.springfox.version>
+        <sonar.projectKey>borelanjo_pos-javaweb</sonar.projectKey>
+        <sonar.organization>borelanjo</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
