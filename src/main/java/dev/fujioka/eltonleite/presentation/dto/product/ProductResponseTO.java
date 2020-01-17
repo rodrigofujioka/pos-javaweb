@@ -4,14 +4,14 @@ public class ProductResponseTO {
     private Long id;
     private String name;
     private String description;
-    private Integer yearManufacture;
+    private Integer manufactureYear;
 
-    public ProductResponseTO(Long id, String name, String description, Integer yearManufacture) {
+    public ProductResponseTO(Long id, String name, String description, Integer manufactureYear) {
         super();
         this.id = id;
         this.name = name;
         this.description = description;
-        this.yearManufacture = yearManufacture;
+        this.manufactureYear = manufactureYear;
     }
 
     public Long getId() {
@@ -38,12 +38,12 @@ public class ProductResponseTO {
         this.description = description;
     }
 
-    public Integer getYearManufacture() {
-        return yearManufacture;
+    public Integer getManufactureYear() {
+        return manufactureYear;
     }
 
-    public void setYearManufacture(Integer yearManufacture) {
-        this.yearManufacture = yearManufacture;
+    public void setManufactureYear(Integer manufactureYear) {
+        this.manufactureYear = manufactureYear;
     }
 
 }

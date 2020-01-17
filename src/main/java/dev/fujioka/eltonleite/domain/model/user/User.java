@@ -23,20 +23,12 @@ public class User {
     @Column
     private String password;
 
-    @Column(name="date_birth")
+    @Column(name = "date_birth")
     private LocalDate dateBirth;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, LocalDate dateBirth) {
-        super();
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.dateBirth = dateBirth;
-    }
-    
     public User(String username, String password, LocalDate dateBirth) {
         super();
         this.username = username;

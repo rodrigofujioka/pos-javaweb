@@ -13,7 +13,7 @@ public final class ProductAssembler {
     }
 
     public static Product from(ProductRequestTO requestTO) {
-        return new Product(requestTO.getName(), requestTO.getDescription(), requestTO.getYearManufacture());
+        return new Product(requestTO.getName(), requestTO.getDescription(), requestTO.getManufactureYear());
     }
 
     public static ProductResponseTO from(Product product) {

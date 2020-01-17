@@ -24,6 +24,8 @@
         <sonar.projectKey>borelanjo_pos-javaweb</sonar.projectKey>
         <sonar.organization>borelanjo</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        
+        <jacoco.minimium.coverage>0.50</jacoco.minimium.coverage>
     </properties>
 
     <dependencies>
@@ -141,7 +143,7 @@
                                             implementation="org.jacoco.report.check.Limit">
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.35</minimum>
+                                            <minimum>${jacoco.minimium.coverage}</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
