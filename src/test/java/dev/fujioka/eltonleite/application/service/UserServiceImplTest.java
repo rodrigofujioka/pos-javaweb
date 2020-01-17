@@ -18,6 +18,7 @@ import dev.fujioka.eltonleite.domain.service.BaseService;
 
 @ActiveProfiles("test")
 @SpringBootTest
+@DisplayName("Serviço de Usuário")
 class UserServiceImplTest {
 
     @Autowired
