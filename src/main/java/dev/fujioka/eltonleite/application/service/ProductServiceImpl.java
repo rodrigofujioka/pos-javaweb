@@ -42,7 +42,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findAll() {
-        System.out.println(repository.findByManufactureYearBetween(2000, 2019));
         return repository.findAll();
     }
     

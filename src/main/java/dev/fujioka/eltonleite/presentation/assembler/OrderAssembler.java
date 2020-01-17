@@ -21,7 +21,7 @@ public final class OrderAssembler {
     }
     
     public static List<OrderResponseTO> from(List<Order> orders) {
-        return orders.stream().map(u -> from(u)).collect(Collectors.toList());
+        return orders.stream().map(OrderAssembler::from).collect(Collectors.toList());
     }
 
 }
