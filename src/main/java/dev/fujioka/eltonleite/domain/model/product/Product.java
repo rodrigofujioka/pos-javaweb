@@ -14,27 +14,19 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(length = 200)
     private String name;
-    
+
     @Column
     private String description;
-    
+
     @Column(name = "manufacture_year")
     private Integer manufactureYear;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Integer manufactureYear) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.manufactureYear = manufactureYear;
-    }
-    
     public Product(String name, String description, Integer manufactureYear) {
         super();
         this.name = name;
