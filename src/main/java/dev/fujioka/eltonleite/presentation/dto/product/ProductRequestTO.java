@@ -4,7 +4,7 @@ public class ProductRequestTO {
 
     private String name;
     private String description;
-    private Integer yearManufacture;
+    private Integer manufactureYear;
 
     public String getName() {
         return name;
@@ -22,12 +22,12 @@ public class ProductRequestTO {
         this.description = description;
     }
 
-    public Integer getYearManufacture() {
-        return yearManufacture;
+    public Integer getManufactureYear() {
+        return manufactureYear;
     }
 
-    public void setYearManufacture(Integer yearManufacture) {
-        this.yearManufacture = yearManufacture;
+    public void setManufactureYear(Integer manufactureYear) {
+        this.manufactureYear = manufactureYear;
     }
 
 }
