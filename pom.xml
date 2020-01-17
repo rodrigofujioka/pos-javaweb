@@ -24,7 +24,7 @@
         <sonar.projectKey>borelanjo_pos-javaweb</sonar.projectKey>
         <sonar.organization>borelanjo</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        
+
         <jacoco.minimium.coverage>0.50</jacoco.minimium.coverage>
     </properties>
 
@@ -115,14 +115,13 @@
                 <version>0.8.4</version>
                 <executions>
                     <execution>
-                        <id>jacoco-initialize</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>jacoco-report</id>
-                        <phase>test</phase>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
