@@ -21,7 +21,7 @@ public final class WarehouseAssembler {
     }
     
     public static List<WarehouseResponseTO> from(List<Warehouse> warehouses) {
-        return warehouses.stream().map(u -> from(u)).collect(Collectors.toList());
+        return warehouses.stream().map(WarehouseAssembler::from).collect(Collectors.toList());
     }
 
 }

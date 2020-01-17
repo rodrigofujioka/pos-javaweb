@@ -45,14 +45,14 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<ResponseTO<UserResponseTO>> save(@RequestBody UserRequestTO requestTO) {
-        User User = UserAssembler.from(requestTO);
-        return responseService.ok(UserAssembler.from(service.save(User)));
+        User user = UserAssembler.from(requestTO);
+        return responseService.ok(UserAssembler.from(service.save(user)));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ResponseTO<UserResponseTO>> update(@PathVariable Long id, @RequestBody UserRequestTO requestTO) {
-        User User = UserAssembler.from(requestTO);
-        return responseService.ok(UserAssembler.from(service.update(id, User)));
+        User user = UserAssembler.from(requestTO);
+        return responseService.ok(UserAssembler.from(service.update(id, user)));
     }
     
     @DeleteMapping("/{id}")

@@ -22,7 +22,7 @@ public final class ProductAssembler {
     }
 
     public static List<ProductResponseTO> from(List<Product> products) {
-        return products.stream().map(p -> from(p)).collect(Collectors.toList());
+        return products.stream().map(ProductAssembler::from).collect(Collectors.toList());
     }
 
 }

@@ -45,14 +45,14 @@ public class EmployeeController {
 
     @PostMapping
     public ResponseEntity<ResponseTO<EmployeeResponseTO>> save(@RequestBody EmployeeRequestTO requestTO) {
-        Employee Employee = EmployeeAssembler.from(requestTO);
-        return responseService.ok(EmployeeAssembler.from(service.save(Employee)));
+        Employee employee = EmployeeAssembler.from(requestTO);
+        return responseService.ok(EmployeeAssembler.from(service.save(employee)));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ResponseTO<EmployeeResponseTO>> update(@PathVariable Long id, @RequestBody EmployeeRequestTO requestTO) {
-        Employee Employee = EmployeeAssembler.from(requestTO);
-        return responseService.ok(EmployeeAssembler.from(service.update(id, Employee)));
+        Employee employee = EmployeeAssembler.from(requestTO);
+        return responseService.ok(EmployeeAssembler.from(service.update(id, employee)));
     }
     
     @DeleteMapping("/{id}")

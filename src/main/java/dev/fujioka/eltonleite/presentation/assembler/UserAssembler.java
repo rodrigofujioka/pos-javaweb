@@ -21,7 +21,7 @@ public final class UserAssembler {
     }
     
     public static List<UserResponseTO> from(List<User> users) {
-        return users.stream().map(u -> from(u)).collect(Collectors.toList());
+        return users.stream().map(UserAssembler::from).collect(Collectors.toList());
     }
 
 }
