@@ -44,4 +44,9 @@ public final class ResponseTO<T> implements Serializable {
         this.links = links;
     }
 
+    @Override
+    public String toString() {
+        return String.format("ResponseTO [data=%s, errors=%s, links=%s]", data, errors, links);
+    }
+
 }
