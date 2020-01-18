@@ -3,7 +3,10 @@ package dev.fujioka.eltonleite.application.controller;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -28,6 +31,7 @@ import dev.fujioka.eltonleite.domain.service.BaseService;
 import dev.fujioka.eltonleite.infrastructure.service.ResponseService;
 import dev.fujioka.eltonleite.presentation.assembler.UserAssembler;
 import dev.fujioka.eltonleite.presentation.dto.shared.ResponseTO;
+import dev.fujioka.eltonleite.presentation.dto.user.UserRequestTO;
 import dev.fujioka.eltonleite.presentation.dto.user.UserResponseTO;
 
 @ActiveProfiles("test")
@@ -35,6 +39,8 @@ import dev.fujioka.eltonleite.presentation.dto.user.UserResponseTO;
 @ContextConfiguration(classes=WebApplication.class)
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
+    
+    
     
     @Autowired
     private MockMvc mvc;
@@ -82,5 +88,67 @@ public class UserControllerTest {
           .andExpect(status().isOk())
           .andExpect(jsonPath("$.data.username", is(alex.getUsername())));
     }
-
+    
+    @Test
+    @DisplayName("Salva um usuário")
+    public void testSave()
+      throws Exception {
+         
+        UserRequestTO requestTO = new UserRequestTO();
+        requestTO.setUsername("alex");
+        requestTO.setPassword("mamae123");
+        requestTO.setDateBirth(LocalDate.now());
+        
+        User user = UserAssembler.from(requestTO);
+        user.setId(1L);
+        
+        UserResponseTO data= new UserResponseTO(1L, "alex", LocalDate.now());
+        ResponseEntity<ResponseTO<UserResponseTO>> responseEntity = ResponseEntity.ok(new ResponseTO<UserResponseTO>(data));
+     
+        given(service.save(UserAssembler.from(requestTO))).willReturn(user);
+        given(responseService.ok(data)).willReturn(responseEntity);
+        mvc.perform(post("/api/users")
+          .contentType(MediaType.APPLICATION_JSON)
+        .content("{\"username\":\"alex\",\"password\":\"mamae123\",\"dateBirth\": \"2020-01-17\"}")
+        )
+          .andExpect(status().isOk())
+          .andExpect(jsonPath("$.data.username", is(data.getUsername())));
+    }
+    
+    @Test
+    @DisplayName("Atualiza um usuário")
+    public void testUpdate()
+      throws Exception {
+         
+        UserRequestTO requestTO = new UserRequestTO();
+        requestTO.setUsername("alex");
+        requestTO.setPassword("mamae123");
+        requestTO.setDateBirth(LocalDate.now());
+        
+        User user = UserAssembler.from(requestTO);
+        user.setId(1L);
+        
+        UserResponseTO data= new UserResponseTO(1L, "alex", LocalDate.now());
+        ResponseEntity<ResponseTO<UserResponseTO>> responseEntity = ResponseEntity.ok(new ResponseTO<UserResponseTO>(data));
+     
+        given(service.update(1L,UserAssembler.from(requestTO))).willReturn(user);
+        given(responseService.ok(data)).willReturn(responseEntity);
+        mvc.perform(put("/api/users/1")
+          .contentType(MediaType.APPLICATION_JSON)
+        .content("{\"username\":\"alex\",\"password\":\"mamae123\",\"dateBirth\": \"2020-01-17\"}")
+        )
+          .andExpect(status().isOk())
+          .andExpect(jsonPath("$.data.username", is(data.getUsername())));
+    }
+    
+    @Test
+    @DisplayName("Exclui um usuário")
+    public void testDelete()
+      throws Exception {
+         
+        mvc.perform(delete("/api/users/1")
+        )
+          .andExpect(status().isNoContent());
+    }
+    
 }
