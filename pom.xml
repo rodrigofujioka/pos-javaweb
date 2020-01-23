@@ -19,8 +19,9 @@
 
     <properties>
         <java.version>11</java.version>
-        <junit.version>5.5.1</junit.version>
         <io.springfox.version>2.9.2</io.springfox.version>
+        <modelmapper.version>2.3.5</modelmapper.version>
+        <jackson-datetype-jsr310.version>2.10.1</jackson-datetype-jsr310.version>
     </properties>
 
     <dependencies>
@@ -56,20 +57,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${modelmapper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
         <dependency>
