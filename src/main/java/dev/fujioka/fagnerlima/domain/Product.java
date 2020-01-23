@@ -1,15 +1,24 @@
-package dev.fujioka.java.avancado.web.domain;
+package dev.fujioka.fagnerlima.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -26,6 +35,10 @@ public class Product implements Serializable {
     private String name;
 
     private String description;
+
+    @NotNull
+    @Column(nullable = false)
+    private Integer amount;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -58,5 +71,33 @@ public class Product implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
+    public void addAmount(Integer amount) {
+        if (this.amount == null) {
+            this.amount = 0;
+        }
+
+        this.amount += amount;
+    }
+
+    public void subtractAmount(Integer amount) {
+        if (this.amount == null) {
+            this.amount = 0;
+        }
+
+        if (this.amount < amount) {
+            throw new RuntimeException("Quantidade indisponível");
+        }
+
+        this.amount -= amount;
     }
 }

@@ -1,4 +1,4 @@
-package dev.fujioka.java.avancado.web.exception;
+package dev.fujioka.fagnerlima.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

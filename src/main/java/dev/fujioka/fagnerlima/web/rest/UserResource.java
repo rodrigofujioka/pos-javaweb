@@ -1,11 +1,12 @@
-package dev.fujioka.java.avancado.web.web.rest;
+package dev.fujioka.fagnerlima.web.rest;
 
-import dev.fujioka.java.avancado.web.domain.User;
-import dev.fujioka.java.avancado.web.exception.EntityNotFoundException;
-import dev.fujioka.java.avancado.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import dev.fujioka.fagnerlima.domain.User;
+import dev.fujioka.fagnerlima.exception.EntityNotFoundException;
+import dev.fujioka.fagnerlima.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,7 +25,7 @@ public class UserResource {
     }
 
     @GetMapping("/user/{id}")
-    public User getUser(Long id) {
+    public User getUser(@PathVariable Long id) {
 
         return userService.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Person", "id", id.toString()));

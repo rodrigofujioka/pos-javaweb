@@ -1,4 +1,4 @@
-package dev.fujioka.java.avancado.web.config;
+package dev.fujioka.fagnerlima.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

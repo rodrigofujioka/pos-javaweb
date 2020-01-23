@@ -1,4 +1,4 @@
-package dev.fujioka.java.avancado.web.domain;
+package dev.fujioka.fagnerlima.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
