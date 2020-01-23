@@ -127,4 +127,16 @@ public class User implements Serializable {
         result = 31 * result + (dtUpdate != null ? dtUpdate.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dtCreation=" + dtCreation +
+                ", dtUpdate=" + dtUpdate +
+                '}';
+    }
 }
