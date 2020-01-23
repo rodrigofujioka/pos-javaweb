@@ -3,7 +3,7 @@ create table t_user (
     username VARCHAR not null,
     password VARCHAR not null,
     date_birth DATE,
-    CONSTRAINT uk_account_account_number UNIQUE (username)
+    CONSTRAINT uk_user_username UNIQUE (username)
 );
 
 create table t_product (
