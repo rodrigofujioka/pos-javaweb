@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import dev.fujioka.eltonleite.domain.model. warehouse. Warehouse;
+import dev.fujioka.eltonleite.domain.model.warehouse.Warehouse;
 import dev.fujioka.eltonleite.presentation.dto.warehouse.WarehouseRequestTO;
 import dev.fujioka.eltonleite.presentation.dto.warehouse.WarehouseResponseTO;
 
