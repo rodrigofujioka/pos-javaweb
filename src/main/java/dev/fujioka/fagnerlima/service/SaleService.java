@@ -12,6 +12,7 @@ import dev.fujioka.fagnerlima.domain.Product;
 import dev.fujioka.fagnerlima.domain.Sale;
 import dev.fujioka.fagnerlima.domain.Store;
 import dev.fujioka.fagnerlima.exception.EntityNotFoundException;
+import dev.fujioka.fagnerlima.exception.SaleException;
 import dev.fujioka.fagnerlima.repository.SaleItemRepository;
 import dev.fujioka.fagnerlima.repository.SaleRepository;
 
@@ -61,14 +62,14 @@ public class SaleService extends BaseCrudService<Sale> {
                 .orElseThrow(() -> new EntityNotFoundException("id", entity.getStore().getId(), "Loja não encontrada"));
 
         if (!store.getActive()) {
-            throw new RuntimeException("Loja inativa");
+            throw new SaleException("Loja inativa");
         }
 
         Client client = clientService.findById(entity.getClient().getId())
                 .orElseThrow(() -> new EntityNotFoundException("id", entity.getClient().getId(), "Cliente não encontrado"));
 
         if (!client.getActive()) {
-            throw new RuntimeException("Cliente inativo");
+            throw new SaleException("Cliente inativo");
         }
     }
 

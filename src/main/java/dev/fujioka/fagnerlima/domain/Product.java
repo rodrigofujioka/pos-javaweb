@@ -95,7 +95,7 @@ public class Product implements Serializable {
         }
 
         if (this.amount < amount) {
-            throw new RuntimeException("Quantidade indisponível");
+            throw new RuntimeException(String.format("Quantidade indisponível. Restam %d unidades do produto %s.", this.amount, name));
         }
 
         this.amount -= amount;
