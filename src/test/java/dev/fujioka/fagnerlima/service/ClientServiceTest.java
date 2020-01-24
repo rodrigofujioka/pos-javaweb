@@ -1,37 +1,36 @@
 package dev.fujioka.fagnerlima.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import dev.fujioka.fagnerlima.domain.Client;
+import dev.fujioka.fagnerlima.repository.ClientRepository;
 
 @ActiveProfiles("test")
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ClientServiceTest {
 
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
     private Long firstClientId;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         Client client = new Client();
         client.setFirstName("José");
@@ -49,40 +48,40 @@ public class ClientServiceTest {
         clientService.save(client).orElseThrow();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
-        clientService.findAll().stream().forEach(c -> clientService.delete(c));
+        clientRepository.deleteAll();
     }
 
     @Test
     public void testFindAll() {
         List<Client> clients = clientService.findAll();
 
-        assertTrue(clients.size() == 2);
+        assertThat(clients.size() == 2).isTrue();
     }
 
     @Test
     public void testFindAllByPageable() {
         Page<Client> clientsPage = clientService.findAll(PageRequest.of(0, 10));
 
-        assertTrue(clientsPage.getContent().size() == 2);
-        assertTrue(clientsPage.getTotalElements() == 2);
-        assertTrue(clientsPage.getNumberOfElements() == 2);
-        assertTrue(clientsPage.getSize() == 10);
-        assertTrue(clientsPage.getNumber() == 0);
-        assertFalse(clientsPage.hasNext());
+        assertThat(clientsPage.getContent().size() == 2).isTrue();
+        assertThat(clientsPage.getTotalElements() == 2).isTrue();
+        assertThat(clientsPage.getNumberOfElements() == 2).isTrue();
+        assertThat(clientsPage.getSize() == 10).isTrue();
+        assertThat(clientsPage.getNumber() == 0).isTrue();
+        assertThat(clientsPage.hasNext()).isFalse();
     }
 
     @Test
     public void findById() {
         Client client = clientService.findById(firstClientId).orElseThrow();
 
-        assertNotNull(client.getId());
+        assertThat(client.getId()).isNotNull();
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void findById_NotFound() {
-        clientService.findById(1000L).orElseThrow();
+        assertThrows(NoSuchElementException.class, () -> clientService.findById(1000L).orElseThrow());
     }
 
     @Test
@@ -94,12 +93,12 @@ public class ClientServiceTest {
 
         clientService.save(client).orElseThrow();
 
-        assertNotNull(client.getId());
-        assertEquals(client.getFirstName(), "Augusto");
-        assertEquals(client.getLastName(), "Reis");
-        assertTrue(client.getActive());
-        assertNotNull(client.getCreatedAt());
-        assertNotNull(client.getUpdatedAt());
+        assertThat(client.getId()).isNotNull();
+        assertThat(client.getFirstName()).isEqualTo("Augusto");
+        assertThat(client.getLastName()).isEqualTo("Reis");
+        assertThat(client.getActive()).isTrue();
+        assertThat(client.getCreatedAt()).isNotNull();
+        assertThat(client.getUpdatedAt()).isNotNull();
     }
 
     @Test
@@ -112,16 +111,16 @@ public class ClientServiceTest {
 
         clientService.save(client).orElseThrow();
 
-        assertEquals(client.getId(), firstClientId);
-        assertEquals(client.getFirstName(), "José");
-        assertEquals(client.getLastName(), "de Lima");
-        assertFalse(client.getActive());
+        assertThat(client.getId()).isEqualTo(firstClientId);
+        assertThat(client.getFirstName()).isEqualTo("José");
+        assertThat(client.getLastName()).isEqualTo("de Lima");
+        assertThat(client.getActive()).isFalse();
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void testDelete() {
         clientService.deleteById(firstClientId);
-        clientService.findById(firstClientId).orElseThrow();
+        assertThrows(NoSuchElementException.class, () -> clientService.findById(firstClientId).orElseThrow());
     }
 
 }
