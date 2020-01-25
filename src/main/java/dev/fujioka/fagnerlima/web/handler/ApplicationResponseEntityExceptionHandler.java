@@ -17,7 +17,8 @@ public class ApplicationResponseEntityExceptionHandler extends ResponseEntityExc
 
     @ExceptionHandler({ RuntimeException.class })
     public ResponseEntity<Object> handleRuntimeException(RuntimeException exception, WebRequest request) {
-        String message = exception.getMessage() != null ? exception.getMessage() : "Ocorreu um erro durante a solicitação";
+        String message = exception.getMessage() != null && !exception.getMessage().isBlank()
+                ? exception.getMessage() : "Ocorreu um erro durante a solicitação";
         logger.error(message, exception);
 
         return handleExceptionInternal(exception, message, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);

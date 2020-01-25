@@ -48,6 +48,17 @@ public class Client implements Serializable {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    public Client() {
+        super();
+    }
+
+    public Client(@NotEmpty String firstName, @NotEmpty String lastName, @NotNull Boolean active) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.active = active;
+    }
+
     public Long getId() {
         return id;
     }

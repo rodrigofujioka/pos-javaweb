@@ -1,16 +1,20 @@
 package dev.fujioka.fagnerlima.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.assertj.core.internal.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
@@ -28,26 +32,6 @@ public class ClientServiceTest {
     @Autowired
     private ClientRepository clientRepository;
 
-    private Long firstClientId;
-
-    @BeforeEach
-    public void setUp() {
-        Client client = new Client();
-        client.setFirstName("José");
-        client.setLastName("da Silva");
-        client.setActive(true);
-
-        clientService.save(client).orElseThrow();
-        firstClientId = client.getId();
-
-        client = new Client();
-        client.setFirstName("Maria");
-        client.setLastName("Alburquerque");
-        client.setActive(false);
-
-        clientService.save(client).orElseThrow();
-    }
-
     @AfterEach
     public void tearDown() {
         clientRepository.deleteAll();
@@ -55,28 +39,33 @@ public class ClientServiceTest {
 
     @Test
     public void testFindAll() {
+        generateAndSaveClients(4);
         List<Client> clients = clientService.findAll();
 
-        assertThat(clients.size() == 2).isTrue();
+        assertThat(clients.size()).isEqualTo(4);
     }
 
     @Test
     public void testFindAllByPageable() {
+        generateAndSaveClients(15);
         Page<Client> clientsPage = clientService.findAll(PageRequest.of(0, 10));
 
-        assertThat(clientsPage.getContent().size() == 2).isTrue();
-        assertThat(clientsPage.getTotalElements() == 2).isTrue();
-        assertThat(clientsPage.getNumberOfElements() == 2).isTrue();
-        assertThat(clientsPage.getSize() == 10).isTrue();
-        assertThat(clientsPage.getNumber() == 0).isTrue();
-        assertThat(clientsPage.hasNext()).isFalse();
+        assertPage(clientsPage, 10, 0, 10, 2, 15);
+    }
+
+    @Test
+    public void testFindAllByPageable_noContent() {
+        Page<Client> clientsPage = clientService.findAll(PageRequest.of(0, 10));
+
+        assertPageNoContent(clientsPage, 10, 0);
     }
 
     @Test
     public void findById() {
-        Client client = clientService.findById(firstClientId).orElseThrow();
+        Client mockClient = generateAndSaveClient();
+        Client client = clientService.findById(mockClient.getId()).orElseThrow();
 
-        assertThat(client.getId()).isNotNull();
+        assertThat(client.getId()).isEqualTo(mockClient.getId());
     }
 
     @Test
@@ -86,41 +75,77 @@ public class ClientServiceTest {
 
     @Test
     public void testSave() {
-        Client client = new Client();
-        client.setFirstName("Augusto");
-        client.setLastName("Reis");
-        client.setActive(true);
+        Client client = generateClient();
 
         clientService.save(client).orElseThrow();
 
         assertThat(client.getId()).isNotNull();
-        assertThat(client.getFirstName()).isEqualTo("Augusto");
-        assertThat(client.getLastName()).isEqualTo("Reis");
+        assertThat(client.getFirstName()).isNotBlank();
+        assertThat(client.getLastName()).isNotBlank();
         assertThat(client.getActive()).isTrue();
-        assertThat(client.getCreatedAt()).isNotNull();
-        assertThat(client.getUpdatedAt()).isNotNull();
     }
 
     @Test
     public void testUpdate() {
-        Client client = new Client();
-        client.setId(firstClientId);
-        client.setFirstName("José");
-        client.setLastName("de Lima");
-        client.setActive(false);
+        Client mockClient = generateAndSaveClient();
 
-        clientService.save(client).orElseThrow();
+        Client updatedClient = new Client();
+        BeanUtils.copyProperties(mockClient, updatedClient);
+        updatedClient.setFirstName("Modified");
+        updatedClient.setActive(!mockClient.getActive());
+        clientService.save(updatedClient).orElseThrow();
 
-        assertThat(client.getId()).isEqualTo(firstClientId);
-        assertThat(client.getFirstName()).isEqualTo("José");
-        assertThat(client.getLastName()).isEqualTo("de Lima");
-        assertThat(client.getActive()).isFalse();
+        assertThat(updatedClient.getId()).isEqualTo(mockClient.getId());
+        assertThat(updatedClient.getFirstName()).isNotEqualTo(mockClient.getFirstName());
+        assertThat(updatedClient.getLastName()).isEqualTo(mockClient.getLastName());
+        assertThat(updatedClient.getActive()).isNotEqualTo(mockClient.getActive());
     }
 
     @Test
     public void testDelete() {
-        clientService.deleteById(firstClientId);
-        assertThrows(NoSuchElementException.class, () -> clientService.findById(firstClientId).orElseThrow());
+        Client mockClient = generateAndSaveClient();
+
+        assertThatCode(() -> clientService.deleteById(mockClient.getId())).doesNotThrowAnyException();
+    }
+
+    @Test
+    public void testDelete_whenNotFound() {
+        assertThrows(EmptyResultDataAccessException.class, () -> clientService.deleteById(100L));
+    }
+
+    private Client generateClient() {
+        return new Client(RandomString.make(10), RandomString.make(10), true);
+    }
+
+    private Client generateAndSaveClient() {
+        return clientRepository.save(generateClient());
+    }
+
+    private List<Client> generateClients(Integer amount) {
+        List<Client> clients = new ArrayList<>();
+
+        for (int i = 0; i < amount; i++) {
+            clients.add(new Client(RandomString.make(10), RandomString.make(10), true));
+        }
+
+        return clients;
+    }
+
+    private List<Client> generateAndSaveClients(Integer amount) {
+        return clientRepository.saveAll(generateClients(amount));
+    }
+
+    private void assertPage(Page<?> page, int pageSize, int pageNumber, int numberOfElements, int totalPages, int totalElements) {
+        assertThat(page.getContent().size()).isEqualTo(numberOfElements);
+        assertThat(page.getNumberOfElements()).isEqualTo(numberOfElements);
+        assertThat(page.getNumber()).isEqualTo(pageNumber);
+        assertThat(page.getSize()).isEqualTo(pageSize);
+        assertThat(page.getTotalPages()).isEqualTo(totalPages);
+        assertThat(page.getTotalElements()).isEqualTo(totalElements);
+    }
+
+    private void assertPageNoContent(Page<?> page, int pageSize, int pageNumber) {
+        assertPage(page, pageSize, pageNumber, 0, 0, 0);
     }
 
 }
