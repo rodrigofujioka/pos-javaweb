@@ -44,6 +44,14 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(@NotEmpty String login, String password, @NotEmpty String firstName, @NotEmpty String lastName) {
+        super();
+        this.login = login;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Long getId() {
         return id;
     }

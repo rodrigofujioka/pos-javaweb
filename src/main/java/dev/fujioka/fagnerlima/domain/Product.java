@@ -20,6 +20,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import dev.fujioka.fagnerlima.exception.ProductException;
+
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"dtCreation", "dtUpdate"},
@@ -106,7 +108,7 @@ public class Product implements Serializable {
         }
 
         if (this.amount < amount) {
-            throw new RuntimeException(String.format("Quantidade indisponível. Restam %d unidades do produto %s.", this.amount, name));
+            throw new ProductException(String.format("Quantity unavailable. Only %d units of the Axon product %s.", this.amount, name));
         }
 
         this.amount -= amount;

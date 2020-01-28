@@ -46,8 +46,21 @@ public class Sale implements Serializable {
     @JoinColumn(nullable = false)
     private Client client;
 
+    @NotNull
     @OneToMany(mappedBy = "sale")
     private Set<SaleItem> items;
+
+    public Sale() {
+        super();
+    }
+
+    public Sale(@NotNull Store store, @NotNull User user, @NotNull Client client, @NotNull Set<SaleItem> items) {
+        super();
+        this.store = store;
+        this.user = user;
+        this.client = client;
+        this.items = items;
+    }
 
     public Long getId() {
         return id;

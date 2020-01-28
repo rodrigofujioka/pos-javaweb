@@ -44,6 +44,16 @@ public class Store implements Serializable {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    public Store() {
+        super();
+    }
+
+    public Store(@NotEmpty String name, @NotNull Boolean active) {
+        super();
+        this.name = name;
+        this.active = active;
+    }
+
     public Long getId() {
         return id;
     }

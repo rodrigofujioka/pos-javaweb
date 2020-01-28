@@ -37,6 +37,16 @@ public class SaleItem implements Serializable {
     @Column(nullable = false)
     private Integer amount;
 
+    public SaleItem() {
+        super();
+    }
+
+    public SaleItem(@NotNull Product product, Integer amount) {
+        super();
+        this.product = product;
+        this.amount = amount;
+    }
+
     public Long getId() {
         return id;
     }

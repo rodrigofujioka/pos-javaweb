@@ -61,7 +61,7 @@ public class ProductService
 
     public Optional<Product> addAmount(Long id, Integer amount) {
         Optional<Product> entityOpt = findById(id);
-        Product entity = entityOpt.orElseThrow(() -> new EntityNotFoundException("id", id, "Informação não encontrada"));
+        Product entity = entityOpt.orElseThrow(() -> new EntityNotFoundException("id", id, "Product not found"));
         entity.addAmount(amount);
 
         return save(entity);
