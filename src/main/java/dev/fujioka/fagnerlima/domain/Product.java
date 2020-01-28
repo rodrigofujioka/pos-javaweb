@@ -49,6 +49,17 @@ public class Product implements Serializable {
     @LastModifiedDate
     private Date dtUpdate;
 
+    public Product() {
+        super();
+    }
+
+    public Product(@NotEmpty String name, String description, @NotNull Integer amount) {
+        super();
+        this.name = name;
+        this.description = description;
+        this.amount = amount;
+    }
+
     public Long getId() {
         return id;
     }

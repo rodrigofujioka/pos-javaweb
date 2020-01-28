@@ -1,5 +1,7 @@
 package dev.fujioka.fagnerlima.service;
 
+import static dev.fujioka.fagnerlima.service.ServiceAssertions.assertPage;
+import static dev.fujioka.fagnerlima.service.ServiceAssertions.assertPageNoContent;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -133,19 +135,6 @@ public class ClientServiceTest {
 
     private List<Client> generateAndSaveClients(Integer amount) {
         return clientRepository.saveAll(generateClients(amount));
-    }
-
-    private void assertPage(Page<?> page, int pageSize, int pageNumber, int numberOfElements, int totalPages, int totalElements) {
-        assertThat(page.getContent().size()).isEqualTo(numberOfElements);
-        assertThat(page.getNumberOfElements()).isEqualTo(numberOfElements);
-        assertThat(page.getNumber()).isEqualTo(pageNumber);
-        assertThat(page.getSize()).isEqualTo(pageSize);
-        assertThat(page.getTotalPages()).isEqualTo(totalPages);
-        assertThat(page.getTotalElements()).isEqualTo(totalElements);
-    }
-
-    private void assertPageNoContent(Page<?> page, int pageSize, int pageNumber) {
-        assertPage(page, pageSize, pageNumber, 0, 0, 0);
     }
 
 }
