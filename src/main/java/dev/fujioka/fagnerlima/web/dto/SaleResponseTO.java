@@ -2,7 +2,7 @@ package dev.fujioka.fagnerlima.web.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,7 +25,7 @@ public class SaleResponseTO implements Serializable {
 
     private Client client;
 
-    private Set<SaleItemResponseTO> items;
+    private List<SaleItemResponseTO> items;
 
     public Long getId() {
         return id;
@@ -67,11 +67,11 @@ public class SaleResponseTO implements Serializable {
         this.client = client;
     }
 
-    public Set<SaleItemResponseTO> getItems() {
+    public List<SaleItemResponseTO> getItems() {
         return items;
     }
 
-    public void setItems(Set<SaleItemResponseTO> items) {
+    public void setItems(List<SaleItemResponseTO> items) {
         this.items = items;
     }
 }

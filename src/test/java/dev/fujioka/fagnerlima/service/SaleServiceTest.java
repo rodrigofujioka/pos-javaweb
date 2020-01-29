@@ -2,7 +2,7 @@ package dev.fujioka.fagnerlima.service;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.Set;
+import java.util.List;
 
 import org.assertj.core.internal.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.AfterEach;
@@ -66,12 +66,11 @@ public class SaleServiceTest {
 
     @Test
     public void testSave() {
-        
     }
 
     @Test
     public void testSave_whenStoreNotActive() {
-        Set<SaleItem> items = Set.of(generateSaleItem(10, 2));
+        List<SaleItem> items = List.of(generateSaleItem(10, 2));
         Sale sale = generateSale(items);
 
         sale.getStore().setActive(false);
@@ -82,7 +81,7 @@ public class SaleServiceTest {
 
     @Test
     public void testSave_whenStoreNotFound() {
-        Set<SaleItem> items = Set.of(generateSaleItem(10, 2));
+        List<SaleItem> items = List.of(generateSaleItem(10, 2));
         Sale sale = generateSale(items);
 
         Store store = new Store();
@@ -94,7 +93,7 @@ public class SaleServiceTest {
 
     @Test
     public void testSave_whenClientNotActive() {
-        Set<SaleItem> items = Set.of(generateSaleItem(10, 2));
+        List<SaleItem> items = List.of(generateSaleItem(10, 2));
         Sale sale = generateSale(items);
 
         sale.getClient().setActive(false);
@@ -105,7 +104,7 @@ public class SaleServiceTest {
 
     @Test
     public void testSave_whenClientNotFound() {
-        Set<SaleItem> items = Set.of(generateSaleItem(10, 2));
+        List<SaleItem> items = List.of(generateSaleItem(10, 2));
         Sale sale = generateSale(items);
 
         Client client = new Client();
@@ -119,7 +118,7 @@ public class SaleServiceTest {
     public void testSave_whenProductNotFound() {
         Product product = new Product();
         product.setId(100L);
-        Set<SaleItem> items = Set.of(new SaleItem(product, 10));
+        List<SaleItem> items = List.of(new SaleItem(product, 10));
         Sale sale = generateSale(items);
 
         assertThrows(EntityNotFoundException.class, () -> saleService.save(sale), "Product not found");
@@ -127,13 +126,13 @@ public class SaleServiceTest {
 
     @Test
     public void testSave_whenProductQuantityUnavailable() {
-        Set<SaleItem> items = Set.of(generateSaleItem(10, 20));
+        List<SaleItem> items = List.of(generateSaleItem(10, 20));
         Sale sale = generateSale(items);
 
         assertThrows(ProductException.class, () -> saleService.save(sale));
     }
 
-    private Sale generateSale(Set<SaleItem> items) {
+    private Sale generateSale(List<SaleItem> items) {
         Store store = storeService.save(new Store(RandomString.make(10), true)).get();
         User user = userService.save(new User(RandomString.make(10), RandomString.make(10), RandomString.make(10), RandomString.make(10)))
                 .get();

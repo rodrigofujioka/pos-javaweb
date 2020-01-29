@@ -1,7 +1,7 @@
 package dev.fujioka.fagnerlima.web.dto;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 public class SaleRequestTO implements Serializable {
 
@@ -15,7 +15,7 @@ public class SaleRequestTO implements Serializable {
 
     private Long clientId;
 
-    private Set<SaleItemRequestTO> items;
+    private List<SaleItemRequestTO> items;
 
     public Long getId() {
         return id;
@@ -49,11 +49,11 @@ public class SaleRequestTO implements Serializable {
         this.clientId = clientId;
     }
 
-    public Set<SaleItemRequestTO> getItems() {
+    public List<SaleItemRequestTO> getItems() {
         return items;
     }
 
-    public void setItems(Set<SaleItemRequestTO> items) {
+    public void setItems(List<SaleItemRequestTO> items) {
         this.items = items;
     }
 }

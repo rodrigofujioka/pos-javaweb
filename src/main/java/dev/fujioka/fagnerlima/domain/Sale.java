@@ -2,7 +2,7 @@ package dev.fujioka.fagnerlima.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,13 +48,13 @@ public class Sale implements Serializable {
 
     @NotNull
     @OneToMany(mappedBy = "sale")
-    private Set<SaleItem> items;
+    private List<SaleItem> items;
 
     public Sale() {
         super();
     }
 
-    public Sale(@NotNull Store store, @NotNull User user, @NotNull Client client, @NotNull Set<SaleItem> items) {
+    public Sale(@NotNull Store store, @NotNull User user, @NotNull Client client, @NotNull List<SaleItem> items) {
         super();
         this.store = store;
         this.user = user;
@@ -102,11 +102,11 @@ public class Sale implements Serializable {
         this.client = client;
     }
 
-    public Set<SaleItem> getItems() {
+    public List<SaleItem> getItems() {
         return items;
     }
 
-    public void setItems(Set<SaleItem> items) {
+    public void setItems(List<SaleItem> items) {
         this.items = items;
     }
 }
