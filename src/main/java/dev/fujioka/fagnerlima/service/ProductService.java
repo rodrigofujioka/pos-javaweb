@@ -59,10 +59,10 @@ public class ProductService
         return productRepository.count();
     }
 
-    public Optional<Product> addAmount(Long id, Integer amount) {
+    public Optional<Product> addQuantity(Long id, Integer quantity) {
         Optional<Product> entityOpt = findById(id);
         Product entity = entityOpt.orElseThrow(() -> new EntityNotFoundException("id", id, "Product not found"));
-        entity.addAmount(amount);
+        entity.addQuantity(quantity);
 
         return save(entity);
     }

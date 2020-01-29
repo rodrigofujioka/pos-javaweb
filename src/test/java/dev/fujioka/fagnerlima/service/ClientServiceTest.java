@@ -123,18 +123,18 @@ public class ClientServiceTest {
         return clientRepository.save(generateClient());
     }
 
-    private List<Client> generateClients(Integer amount) {
+    private List<Client> generateClients(Integer quantity) {
         List<Client> clients = new ArrayList<>();
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < quantity; i++) {
             clients.add(new Client(RandomString.make(10), RandomString.make(10), true));
         }
 
         return clients;
     }
 
-    private List<Client> generateAndSaveClients(Integer amount) {
-        return clientRepository.saveAll(generateClients(amount));
+    private List<Client> generateAndSaveClients(Integer quantity) {
+        return clientRepository.saveAll(generateClients(quantity));
     }
 
 }

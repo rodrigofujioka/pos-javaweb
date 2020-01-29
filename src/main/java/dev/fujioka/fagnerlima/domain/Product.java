@@ -40,7 +40,7 @@ public class Product implements Serializable {
 
     @NotNull
     @Column(nullable = false)
-    private Integer amount;
+    private Integer quantity;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -55,11 +55,11 @@ public class Product implements Serializable {
         super();
     }
 
-    public Product(@NotEmpty String name, String description, @NotNull Integer amount) {
+    public Product(@NotEmpty String name, String description, @NotNull Integer quantity) {
         super();
         this.name = name;
         this.description = description;
-        this.amount = amount;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -86,31 +86,31 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public void addAmount(Integer amount) {
-        if (this.amount == null) {
-            this.amount = 0;
+    public void addQuantity(Integer quantity) {
+        if (this.quantity == null) {
+            this.quantity = 0;
         }
 
-        this.amount += amount;
+        this.quantity += quantity;
     }
 
-    public void subtractAmount(Integer amount) {
-        if (this.amount == null) {
-            this.amount = 0;
+    public void subtractQuantity(Integer quantity) {
+        if (this.quantity == null) {
+            this.quantity = 0;
         }
 
-        if (this.amount < amount) {
-            throw new ProductException(String.format("Quantity unavailable. Only %d units of the Axon product %s.", this.amount, name));
+        if (this.quantity < quantity) {
+            throw new ProductException(String.format("Quantity unavailable. Only %d units of the Axon product %s.", this.quantity, name));
         }
 
-        this.amount -= amount;
+        this.quantity -= quantity;
     }
 }

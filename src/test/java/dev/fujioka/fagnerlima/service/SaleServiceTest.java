@@ -126,7 +126,7 @@ public class SaleServiceTest {
     }
 
     @Test
-    public void testSave_whenProductAmountUnavailable() {
+    public void testSave_whenProductQuantityUnavailable() {
         Set<SaleItem> items = Set.of(generateSaleItem(10, 20));
         Sale sale = generateSale(items);
 
@@ -142,10 +142,10 @@ public class SaleServiceTest {
         return new Sale(store, user, client, items);
     }
 
-    private SaleItem generateSaleItem(Integer amountProduct, Integer amountSale) {
-        Product product = productService.save(new Product(RandomString.make(10), RandomString.make(10), amountProduct)).get();
+    private SaleItem generateSaleItem(Integer quantityProduct, Integer quantitySale) {
+        Product product = productService.save(new Product(RandomString.make(10), RandomString.make(10), quantityProduct)).get();
 
-        return new SaleItem(product, amountSale);
+        return new SaleItem(product, quantitySale);
     }
 
 }

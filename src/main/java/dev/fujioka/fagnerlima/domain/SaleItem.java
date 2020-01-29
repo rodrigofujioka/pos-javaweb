@@ -35,16 +35,16 @@ public class SaleItem implements Serializable {
     private Product product;
 
     @Column(nullable = false)
-    private Integer amount;
+    private Integer quantity;
 
     public SaleItem() {
         super();
     }
 
-    public SaleItem(@NotNull Product product, Integer amount) {
+    public SaleItem(@NotNull Product product, Integer quantity) {
         super();
         this.product = product;
-        this.amount = amount;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -71,11 +71,11 @@ public class SaleItem implements Serializable {
         this.product = product;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

@@ -84,7 +84,7 @@ public class ProductServiceTest {
         assertThat(product.getId()).isNotNull();
         assertThat(product.getName()).isNotBlank();
         assertThat(product.getDescription()).isNotBlank();
-        assertThat(product.getAmount()).isGreaterThan(0);
+        assertThat(product.getQuantity()).isGreaterThan(0);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class ProductServiceTest {
         assertThat(updatedProduct.getId()).isEqualTo(mockProduct.getId());
         assertThat(updatedProduct.getName()).isNotEqualTo(mockProduct.getName());
         assertThat(updatedProduct.getDescription()).isNotEqualTo(mockProduct.getDescription());
-        assertThat(updatedProduct.getAmount()).isEqualTo(mockProduct.getAmount());
+        assertThat(updatedProduct.getQuantity()).isEqualTo(mockProduct.getQuantity());
     }
 
     @Test
@@ -123,18 +123,18 @@ public class ProductServiceTest {
         return productRepository.save(generateProduct());
     }
 
-    private List<Product> generateProducts(Integer amount) {
+    private List<Product> generateProducts(Integer quantity) {
         List<Product> products = new ArrayList<>();
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < quantity; i++) {
             products.add(new Product(RandomString.make(10), RandomString.make(10), 10));
         }
 
         return products;
     }
 
-    private List<Product> generateAndSaveProducts(Integer amount) {
-        return productRepository.saveAll(generateProducts(amount));
+    private List<Product> generateAndSaveProducts(Integer quantity) {
+        return productRepository.saveAll(generateProducts(quantity));
     }
 
 }

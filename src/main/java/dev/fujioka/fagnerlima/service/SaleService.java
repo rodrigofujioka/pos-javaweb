@@ -77,7 +77,7 @@ public class SaleService extends BaseCrudService<Sale> {
         entity.getItems().stream().forEach(i -> {
             Product product = productService.findById(i.getProduct().getId())
                     .orElseThrow(() -> new EntityNotFoundException("id", i.getProduct().getId(), "Product not found"));
-            product.subtractAmount(i.getAmount());
+            product.subtractQuantity(i.getQuantity());
             productService.save(product);
 
             Sale sale = new Sale();
@@ -91,7 +91,7 @@ public class SaleService extends BaseCrudService<Sale> {
         entity.getItems().stream().forEach(i -> {
             Product product = productService.findById(i.getProduct().getId())
                     .orElseThrow(() -> new EntityNotFoundException("id", i.getProduct().getId(), "Product not found"));
-            product.addAmount(i.getAmount());
+            product.addQuantity(i.getQuantity());
             productService.save(product);
 
             saleItemRepository.deleteById(i.getId());

@@ -120,18 +120,18 @@ public class StoreServiceTest {
         return storeRepository.save(generateStore());
     }
 
-    private List<Store> generateStores(Integer amount) {
+    private List<Store> generateStores(Integer quantity) {
         List<Store> stores = new ArrayList<>();
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < quantity; i++) {
             stores.add(new Store(RandomString.make(10), true));
         }
 
         return stores;
     }
 
-    private List<Store> generateAndSaveStores(Integer amount) {
-        return storeRepository.saveAll(generateStores(amount));
+    private List<Store> generateAndSaveStores(Integer quantity) {
+        return storeRepository.saveAll(generateStores(quantity));
     }
 
 }

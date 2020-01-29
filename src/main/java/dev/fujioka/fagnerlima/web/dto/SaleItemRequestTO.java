@@ -10,7 +10,7 @@ public class SaleItemRequestTO implements Serializable {
 
     private Long productId;
 
-    private Integer amount;
+    private Integer quantity;
 
     public Long getId() {
         return id;
@@ -28,11 +28,11 @@ public class SaleItemRequestTO implements Serializable {
         this.productId = productId;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

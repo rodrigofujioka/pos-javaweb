@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.fujioka.fagnerlima.domain.Product;
 import dev.fujioka.fagnerlima.service.ProductService;
-import dev.fujioka.fagnerlima.web.dto.ProductAmountRequestTO;
+import dev.fujioka.fagnerlima.web.dto.ProductQuantityRequestTO;
 
 @RestController
 @RequestMapping("/api")
@@ -59,8 +59,8 @@ public class ProductResource {
     }
 
     @PatchMapping("/product/{id}")
-    public ResponseEntity<Product> addAmount(@PathVariable Long id, @RequestBody ProductAmountRequestTO requestTO) {
-        Product product = productService.addAmount(id, requestTO.getAmount()).get();
+    public ResponseEntity<Product> addQuantity(@PathVariable Long id, @RequestBody ProductQuantityRequestTO requestTO) {
+        Product product = productService.addQuantity(id, requestTO.getQuantity()).get();
 
         return ResponseEntity.ok(product);
     }
