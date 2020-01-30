@@ -1,7 +1,9 @@
 package dev.fujioka.fagnerlima.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.assertj.core.internal.bytebuddy.utility.RandomString;
@@ -66,6 +68,36 @@ public class SaleServiceTest {
 
     @Test
     public void testSave() {
+        SaleItem saleItem1 = generateSaleItem(10, 2);
+        SaleItem saleItem2 = generateSaleItem(5, 5);
+        List<SaleItem> items = List.of(saleItem1, saleItem2);
+        Sale sale = generateSale(items);
+
+        saleService.save(sale).get();
+
+        Product product1 = productService.findById(saleItem1.getProduct().getId()).get();
+        Product product2 = productService.findById(saleItem2.getProduct().getId()).get();
+
+        assertThat(sale.getDate().toLocalDate()).isEqualTo(LocalDate.now());
+        assertThat(product1.getQuantity()).isEqualTo(8);
+        assertThat(product2.getQuantity()).isEqualTo(0);
+    }
+
+    @Test
+    public void testDelete() {
+        SaleItem saleItem1 = generateSaleItem(5, 2);
+        SaleItem saleItem2 = generateSaleItem(5, 5);
+        List<SaleItem> items = List.of(saleItem1, saleItem2);
+        Sale sale = generateSale(items);
+
+        saleService.save(sale).get();
+        saleService.deleteById(sale.getId());
+
+        Product product1 = productService.findById(saleItem1.getProduct().getId()).get();
+        Product product2 = productService.findById(saleItem2.getProduct().getId()).get();
+
+        assertThat(product1.getQuantity()).isEqualTo(5);
+        assertThat(product2.getQuantity()).isEqualTo(5);
     }
 
     @Test
