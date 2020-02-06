@@ -1,6 +1,8 @@
 package dev.fujioka.juan.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +12,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 
+import dev.fujioka.juan.application.service.exception.InformacaoNaoEncontradaException;
 import dev.fujioka.juan.domain.model.produto.Produto;
 import dev.fujioka.juan.domain.service.ProdutoService;
 import dev.fujioka.juan.infrastructure.repository.ProdutoRepository;
+import dev.fujioka.juan.infrastructure.util.BeanUtils;
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -39,6 +45,19 @@ public class ProdutoServiceTest {
 	}
 
 	@Test
+	public void testEncontrarTodosProdutosComPaginacao() {
+		gerarProdutosESalvar(20);
+		Page<Produto> retorno = produtoService.listarTodos(PageRequest.of(0, 10));
+		assertThat(retorno.getContent().size()).isEqualTo(10);
+		assertThat(retorno.getNumberOfElements()).isEqualTo(10);
+		assertThat(retorno.getTotalElements()).isEqualTo(20);
+		assertThat(retorno.getTotalPages()).isEqualTo(2);
+		assertThat(retorno.getSize()).isEqualTo(10);
+		assertThat(retorno.getNumber()).isEqualTo(0);
+
+	}
+
+	@Test
 	public void testSalvar() {
 		Produto produto = gerarProduto();
 
@@ -48,10 +67,52 @@ public class ProdutoServiceTest {
 	}
 
 	@Test
+	public void testAlterar() {
+		Produto produtoMocado = gerarProdutoESalvar();
+
+		Produto produtoAlterado = new Produto();
+		BeanUtils.copyProperties(produtoMocado, produtoAlterado);
+		produtoAlterado.setNome("Produto alterado");
+		produtoAlterado.setAnoFabricacao(2089);
+		produtoService.salvar(produtoAlterado);
+
+		assertThat(produtoAlterado.getId()).isEqualTo(produtoMocado.getId());
+		assertThat(produtoAlterado.getNome()).isNotEqualTo(produtoMocado.getNome());
+		assertThat(produtoAlterado.getDescricao()).isEqualTo(produtoMocado.getDescricao());
+		assertThat(produtoAlterado.getAnoFabricacao()).isNotEqualTo(produtoMocado.getAnoFabricacao());
+
+	}
+
+	@Test
 	public void testEncontrarPorId() {
 		Produto produtoMocado = produtoService.salvar(gerarProduto());
 		Produto produtoEncontrado = produtoService.buscar(produtoMocado.getId());
 		assertThat(produtoEncontrado.getId()).isEqualTo(produtoMocado.getId());
+	}
+
+	@Test
+	public void testEncontrarPorIdNaoEncontrado() {
+		assertThrows(InformacaoNaoEncontradaException.class, () -> produtoService.buscar(950L));
+	}
+
+	@Test
+	public void testDeletar() {
+		Produto produtoMocado = gerarProdutoESalvar();
+		assertThatCode(() -> produtoService.deletar(produtoMocado.getId())).doesNotThrowAnyException();
+		;
+	}
+
+	private Produto gerarProdutoESalvar() {
+		return produtoService.salvar(gerarProduto());
+	}
+
+	private Produto gerarProduto() {
+		Produto produto = new Produto();
+		produto.setNome("produto");
+		produto.setDescricao("descricao");
+		produto.setAnoFabricacao(2020);
+
+		return produto;
 	}
 
 	private List<Produto> gerarProdutosESalvar(Integer amount) {
@@ -70,15 +131,6 @@ public class ProdutoServiceTest {
 		}
 
 		return produtos;
-	}
-
-	private Produto gerarProduto() {
-		Produto produto = new Produto();
-		produto.setNome("produto");
-		produto.setDescricao("descricao");
-		produto.setAnoFabricacao(2020);
-
-		return produto;
 	}
 
 }

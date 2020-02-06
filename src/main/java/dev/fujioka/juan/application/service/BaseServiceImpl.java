@@ -2,7 +2,6 @@ package dev.fujioka.juan.application.service;
 
 import java.util.Optional;
 
-import org.hibernate.tool.schema.extract.spi.InformationExtractor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
