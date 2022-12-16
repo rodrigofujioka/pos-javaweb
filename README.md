@@ -1,6 +1,6 @@
 # Pós graduação em desenvolvimento web
 Código base da disciplina de fundamentos de programação web para disciplinas de pós graduação. 
-Contém conteúdo básico com fundamentos de programação Java web utilizando REST com Maven, JDK11, SpringBoot , SpringData
+Contém conteúdo básico com fundamentos de programação Java web utilizando REST com Maven, JDK11, JDK 17 , SpringBoot , SpringData
 
 [![License](https://img.shields.io/github/license/rodrigofujioka/pos-javaweb.svg)](https://opensource.org/licenses/MIT)
 <img src="https://img.shields.io/github/followers/rodrigofujioka?label=Follow&style=plastic">
