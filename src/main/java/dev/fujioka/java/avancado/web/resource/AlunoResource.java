@@ -16,6 +16,7 @@ public class AlunoResource {
     @Autowired
     private AlunoService alunoService;
 
+
     @PostMapping
     public ResponseEntity<Aluno> salvar(@RequestBody Aluno aluno){
         return ResponseEntity.ok(alunoService.salvar(aluno));

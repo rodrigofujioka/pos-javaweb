@@ -3,6 +3,7 @@ package dev.fujioka.java.avancado.web.service;
 import dev.fujioka.java.avancado.web.model.Aluno;
 import dev.fujioka.java.avancado.web.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,12 @@ public class AlunoService {
     @Autowired
     private AlunoRepository alunoRepository;
 
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
     public Aluno salvar(Aluno aluno){
+        jmsTemplate.convertAndSend("matricula_aluno_queue", aluno);
+
         return alunoRepository.save(aluno);
     }
 
