@@ -29,7 +29,7 @@ Repositório Programação Web: https://github.com/rodrigofujioka/programacaoweb
 
 - [Intellij Idea](https://www.jetbrains.com/idea/) 
 - [Spring Tools](https://spring.io/tools)  
-- [JDK](https://jdk.java.net/java-se-ri/11)
+- [JDK](https://jdk.java.net/java-se-ri/17)
 
 - ```Outras ferramentas como NetBeans ou VS Code podem ser utilizadas)```
 
